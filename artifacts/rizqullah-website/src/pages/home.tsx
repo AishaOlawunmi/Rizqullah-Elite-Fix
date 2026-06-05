@@ -16,6 +16,8 @@ function scrollToSection(id: string) {
   if (!el) return;
   const navHeight = 88;
   const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+  // Use document.documentElement.scrollTo for iOS Safari compatibility
+  document.documentElement.scrollTo({ top, behavior: "smooth" });
   window.scrollTo({ top, behavior: "smooth" });
 }
 
@@ -165,7 +167,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col font-sans overflow-hidden">
+    <div className="min-h-screen bg-background flex flex-col font-sans overflow-x-hidden">
       {/* HEADER */}
       <header className="fixed top-0 w-full z-50 bg-[#1B2D45] text-white py-3 px-6 md:px-12 shadow-lg border-b-4 border-[#2B6CB0]">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
