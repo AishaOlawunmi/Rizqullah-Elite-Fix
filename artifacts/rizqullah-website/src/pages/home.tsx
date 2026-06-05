@@ -1,8 +1,19 @@
-import React, { useEffect } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { Phone, Mail, MapPin, Instagram, Twitter, Facebook, Wrench, Layers, CheckCircle, Star, ArrowRight, Droplets, Shield, Clock, Search, ClipboardCheck } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
+import { Phone, Mail, MapPin, Instagram, Twitter, Facebook, Wrench, Layers, CheckCircle, Star, ArrowRight, Droplets, Shield, Clock, Search, ClipboardCheck, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const NAV_LINKS = [
+  { label: "Services", id: "services" },
+  { label: "About Us", id: "about" },
+  { label: "Our Work", id: "portfolio" },
+  { label: "Process", id: "process" },
+  { label: "Contact", id: "contact" },
+];
+
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) {
   const ref = React.useRef(null);
@@ -22,31 +33,103 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
 }
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    NAV_LINKS.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans overflow-hidden">
       {/* HEADER */}
       <header className="fixed top-0 w-full z-50 bg-[#1B2D45] text-white py-3 px-6 md:px-12 shadow-lg border-b-4 border-[#2B6CB0]">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-3">
+          {/* Logo */}
+          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-3 cursor-pointer">
             <img src="/rizqullah-logo.jpg" alt="Rizqullah Elite Fix Logo" className="h-14 w-auto object-contain rounded-md bg-white/5" />
             <span className="text-xs font-sans tracking-widest text-[#A8C8E0] uppercase hidden sm:block">RC 3788971</span>
-          </div>
-          
-          <div className="hidden md:flex items-center gap-6 font-display text-lg tracking-wide uppercase">
-            <a href="#services" className="hover:text-[#F6A623] transition-colors">Services</a>
-            <a href="#about" className="hover:text-[#F6A623] transition-colors">About Us</a>
-            <a href="#process" className="hover:text-[#F6A623] transition-colors">Process</a>
-            <Button className="bg-[#F6A623] hover:bg-[#d98b16] text-[#1B2D45] font-black uppercase tracking-widest rounded-full px-6 py-2 h-auto text-lg cursor-pointer" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: 'smooth' })}>
+          </button>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {NAV_LINKS.map(({ label, id }) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide transition-all cursor-pointer ${
+                  activeSection === id
+                    ? "bg-[#F6A623] text-[#1B2D45]"
+                    : "text-white hover:text-[#F6A623]"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+            <Button
+              className="ml-4 bg-[#F6A623] hover:bg-[#d98b16] text-[#1B2D45] font-black uppercase tracking-widest rounded-full px-6 py-2 h-auto cursor-pointer"
+              onClick={() => scrollTo("contact")}
+            >
               Get a Quote
             </Button>
-          </div>
-          
-          <div className="md:hidden">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: 'smooth' })}>
-              <Phone className="h-6 w-6" />
-            </Button>
-          </div>
+          </nav>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+          </button>
         </div>
+
+        {/* Mobile dropdown menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden border-t border-[#2B6CB0]/40 mt-3"
+            >
+              <div className="flex flex-col py-3 gap-1">
+                {NAV_LINKS.map(({ label, id }) => (
+                  <button
+                    key={id}
+                    onClick={() => { scrollTo(id); setMenuOpen(false); }}
+                    className={`text-left px-5 py-3 rounded-xl text-base font-bold uppercase tracking-wide transition-all cursor-pointer ${
+                      activeSection === id
+                        ? "bg-[#F6A623] text-[#1B2D45]"
+                        : "text-white hover:bg-white/10"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+                <button
+                  onClick={() => { scrollTo("contact"); setMenuOpen(false); }}
+                  className="mt-2 mx-2 bg-[#F6A623] hover:bg-[#d98b16] text-[#1B2D45] font-black uppercase tracking-widest rounded-full px-6 py-3 text-base cursor-pointer transition-colors"
+                >
+                  Get a Quote
+                </button>
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* HERO SECTION */}
