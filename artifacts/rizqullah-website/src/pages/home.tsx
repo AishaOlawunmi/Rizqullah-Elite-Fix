@@ -11,8 +11,12 @@ const NAV_LINKS = [
   { label: "Contact", id: "contact" },
 ];
 
-function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+function scrollToSection(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navHeight = 88;
+  const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+  window.scrollTo({ top, behavior: "smooth" });
 }
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) {
@@ -176,7 +180,7 @@ export default function Home() {
             {NAV_LINKS.map(({ label, id }) => (
               <button
                 key={id}
-                onClick={() => scrollTo(id)}
+                onClick={() => scrollToSection(id)}
                 className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide transition-all cursor-pointer ${
                   activeSection === id
                     ? "bg-[#F6A623] text-[#1B2D45]"
@@ -188,7 +192,7 @@ export default function Home() {
             ))}
             <Button
               className="ml-4 bg-[#F6A623] hover:bg-[#d98b16] text-[#1B2D45] font-black uppercase tracking-widest rounded-full px-6 py-2 h-auto cursor-pointer"
-              onClick={() => scrollTo("contact")}
+              onClick={() => scrollToSection("contact")}
             >
               Get a Quote
             </Button>
@@ -218,7 +222,7 @@ export default function Home() {
                 {NAV_LINKS.map(({ label, id }) => (
                   <button
                     key={id}
-                    onClick={() => { scrollTo(id); setMenuOpen(false); }}
+                    onClick={() => { scrollToSection(id); setMenuOpen(false); }}
                     className={`text-left px-5 py-3 rounded-xl text-base font-bold uppercase tracking-wide transition-all cursor-pointer ${
                       activeSection === id
                         ? "bg-[#F6A623] text-[#1B2D45]"
@@ -229,7 +233,7 @@ export default function Home() {
                   </button>
                 ))}
                 <button
-                  onClick={() => { scrollTo("contact"); setMenuOpen(false); }}
+                  onClick={() => { scrollToSection("contact"); setMenuOpen(false); }}
                   className="mt-2 mx-2 bg-[#F6A623] hover:bg-[#d98b16] text-[#1B2D45] font-black uppercase tracking-widest rounded-full px-6 py-3 text-base cursor-pointer transition-colors"
                 >
                   Get a Quote
@@ -262,10 +266,10 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-[#F6A623] hover:bg-[#d98b16] text-[#1B2D45] font-black uppercase tracking-widest text-lg h-14 px-8 rounded-full shadow-lg shadow-[#F6A623]/30 cursor-pointer" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: 'smooth' })}>
+                <Button className="bg-[#F6A623] hover:bg-[#d98b16] text-[#1B2D45] font-black uppercase tracking-widest text-lg h-14 px-8 rounded-full shadow-lg shadow-[#F6A623]/30 cursor-pointer" onClick={() => scrollToSection("contact")}>
                   Contact Us Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold uppercase tracking-widest text-lg h-14 px-8 rounded-full cursor-pointer" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: 'smooth' })}>
+                <Button variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold uppercase tracking-widest text-lg h-14 px-8 rounded-full cursor-pointer" onClick={() => scrollToSection("services")}>
                   Our Services
                 </Button>
               </div>
@@ -540,7 +544,7 @@ export default function Home() {
 
           <FadeIn className="text-center mt-12">
             <p className="text-[#A8C8E0] font-sans text-base">
-              Want results like these? <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="text-[#F6A623] font-bold underline underline-offset-4 hover:text-white transition-colors cursor-pointer">Get in touch today.</button>
+              Want results like these? <button onClick={() => scrollToSection("contact")} className="text-[#F6A623] font-bold underline underline-offset-4 hover:text-white transition-colors cursor-pointer">Get in touch today.</button>
             </p>
           </FadeIn>
         </div>
