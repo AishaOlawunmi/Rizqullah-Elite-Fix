@@ -312,6 +312,49 @@ export default function Home() {
         </div>
       </section>
 
+      {/* OUR WORK / PORTFOLIO SECTION */}
+      <section id="portfolio" className="py-24 px-6 md:px-12 bg-[#0f1926] relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full border-[40px] border-[#2B6CB0]/10 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <FadeIn className="text-center mb-16">
+            <span className="text-[#F6A623] font-bold uppercase tracking-[0.2em] text-sm">Real Jobs. Real Results.</span>
+            <h2 className="text-5xl md:text-6xl font-black text-white mt-2 mb-6">OUR WORK</h2>
+            <div className="w-24 h-2 bg-[#F6A623] mx-auto rounded-full mb-6"></div>
+            <p className="text-[#A8C8E0] font-sans text-lg max-w-2xl mx-auto">Every project is handled with precision and care. Here's a look at what we deliver on the ground.</p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { src: "/job-plumbing-1.jpg", label: "Pipe Installation", category: "Plumbing" },
+              { src: "/job-plumbing-2.jpg", label: "External Water Line", category: "Plumbing" },
+              { src: "/job-plumbing-3.jpg", label: "On-Site Precision Work", category: "Plumbing" },
+              { src: "/job-tiling-1.jpg", label: "Bathroom Tiling & Plumbing", category: "Tiling" },
+            ].map((item, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="group relative rounded-2xl overflow-hidden border-2 border-[#2B6CB0]/30 hover:border-[#F6A623] transition-all duration-300 shadow-xl aspect-[3/4]">
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B2D45]/90 via-[#1B2D45]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <span className="inline-block bg-[#F6A623] text-[#1B2D45] text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full mb-2">{item.category}</span>
+                    <p className="text-white font-bold text-base leading-tight">{item.label}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn className="text-center mt-12">
+            <p className="text-[#A8C8E0] font-sans text-base">
+              Want results like these? <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="text-[#F6A623] font-bold underline underline-offset-4 hover:text-white transition-colors cursor-pointer">Get in touch today.</button>
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* CTA / CONTACT SECTION */}
       <section id="contact" className="py-24 px-6 md:px-12 bg-[#1B2D45] relative overflow-hidden">
         {/* Large Decorative Arc */}
