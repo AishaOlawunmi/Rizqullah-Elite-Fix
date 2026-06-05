@@ -32,6 +32,114 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+function QuoteForm() {
+  const [form, setForm] = useState({ name: "", phone: "", service: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const { name, phone, service, message } = form;
+    const text = `Hello Rizqullah Elite Fix! 👋\n\nI'd like a free quote.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Service needed:* ${service || "Not specified"}\n*Job details:* ${message || "Not specified"}\n\nPlease get back to me. Thank you!`;
+    window.open(`https://wa.me/2348124918887?text=${encodeURIComponent(text)}`, "_blank");
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
+  }
+
+  const inputClass = "w-full bg-white/5 border border-white/20 focus:border-[#F6A623] focus:outline-none text-white placeholder-white/40 rounded-xl px-5 py-4 font-sans text-base transition-colors";
+
+  return (
+    <form onSubmit={handleSubmit} className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 flex flex-col gap-5">
+      <h3 className="text-2xl font-black text-white uppercase tracking-wide mb-1">Request a Quote</h3>
+      <p className="text-[#A8C8E0] text-sm font-sans -mt-3">We'll reply on WhatsApp within minutes.</p>
+
+      <div className="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label className="text-[#A8C8E0] text-xs font-bold uppercase tracking-widest mb-2 block">Your Name *</label>
+          <input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            required
+            placeholder="e.g. Aisha Bello"
+            className={inputClass}
+          />
+        </div>
+        <div>
+          <label className="text-[#A8C8E0] text-xs font-bold uppercase tracking-widest mb-2 block">Phone Number *</label>
+          <input
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+            required
+            placeholder="e.g. 08012345678"
+            type="tel"
+            className={inputClass}
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="text-[#A8C8E0] text-xs font-bold uppercase tracking-widest mb-2 block">Service Needed *</label>
+        <select
+          name="service"
+          value={form.service}
+          onChange={handleChange}
+          required
+          className={inputClass + " cursor-pointer"}
+        >
+          <option value="" disabled className="bg-[#1B2D45]">Select a service...</option>
+          <option value="Plumbing Installation" className="bg-[#1B2D45]">Plumbing Installation</option>
+          <option value="Tiling" className="bg-[#1B2D45]">Tiling</option>
+          <option value="Plumbing & Tiling" className="bg-[#1B2D45]">Plumbing & Tiling</option>
+          <option value="Repair / Maintenance" className="bg-[#1B2D45]">Repair / Maintenance</option>
+          <option value="Other" className="bg-[#1B2D45]">Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="text-[#A8C8E0] text-xs font-bold uppercase tracking-widest mb-2 block">Describe the Job</label>
+        <textarea
+          name="message"
+          value={form.message}
+          onChange={handleChange}
+          rows={4}
+          placeholder="Tell us a bit about what you need — location, type of work, any details..."
+          className={inputClass + " resize-none"}
+        />
+      </div>
+
+      <motion.button
+        type="submit"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.97 }}
+        className={`w-full py-5 rounded-2xl font-black text-lg uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-3 ${
+          submitted
+            ? "bg-green-500 text-white"
+            : "bg-[#F6A623] hover:bg-[#d98b16] text-[#1B2D45]"
+        }`}
+      >
+        {submitted ? (
+          <>
+            <CheckCircle className="w-6 h-6" /> Opening WhatsApp...
+          </>
+        ) : (
+          <>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Send via WhatsApp
+          </>
+        )}
+      </motion.button>
+      <p className="text-white/30 text-xs font-sans text-center">Tapping the button opens WhatsApp with your details pre-filled.</p>
+    </form>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -440,47 +548,86 @@ export default function Home() {
 
       {/* CTA / CONTACT SECTION */}
       <section id="contact" className="py-24 px-6 md:px-12 bg-[#1B2D45] relative overflow-hidden">
-        {/* Large Decorative Arc */}
         <div className="absolute -top-[400px] -left-[400px] w-[800px] h-[800px] rounded-full border-[60px] border-[#2B6CB0]/20 pointer-events-none"></div>
-        
-        <div className="max-w-5xl mx-auto relative z-10 text-center">
-          <FadeIn>
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-6">
-              READY FOR AN <span className="text-[#F6A623]">ELITE UPGRADE?</span>
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full border-[30px] border-[#F6A623]/10 translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          <FadeIn className="text-center mb-14">
+            <span className="text-[#F6A623] font-bold uppercase tracking-[0.2em] text-sm">Free Consultation</span>
+            <h2 className="text-5xl md:text-6xl font-black text-white mt-2 mb-4">
+              GET A FREE <span className="text-[#F6A623]">QUOTE</span>
             </h2>
-            <p className="text-xl text-[#A8C8E0] font-sans max-w-2xl mx-auto mb-12">
-              Don't settle for less when it comes to your property. Contact Rizqullah Elite Fix today for a consultation and quote.
+            <div className="w-24 h-2 bg-[#F6A623] mx-auto rounded-full mb-4"></div>
+            <p className="text-[#A8C8E0] font-sans text-lg max-w-xl mx-auto">
+              Fill in your details and we'll get back to you on WhatsApp within minutes.
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-6 text-left">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            {/* QUOTE FORM */}
             <FadeIn delay={0.1}>
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-colors h-full flex flex-col justify-center">
-                <Phone className="w-10 h-10 text-[#F6A623] mb-6" />
-                <h4 className="text-white font-black text-xl mb-2 uppercase">Call Us</h4>
-                <a href="tel:+2348124918887" className="text-[#A8C8E0] hover:text-white font-sans font-medium transition-colors block">+234 812 491 8887</a>
-                <a href="tel:+234110428843" className="text-[#A8C8E0] hover:text-white font-sans font-medium transition-colors block mt-1">+234 110 428 843</a>
-              </div>
+              <QuoteForm />
             </FadeIn>
 
-            <FadeIn delay={0.2}>
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-colors h-full flex flex-col justify-center">
-                <Mail className="w-10 h-10 text-[#F6A623] mb-6" />
-                <h4 className="text-white font-black text-xl mb-2 uppercase">Email Us</h4>
-                <a href="mailto:rizqullahplumbingengineering22@gmail.com" className="text-[#A8C8E0] hover:text-white font-sans font-medium break-words text-sm transition-colors">
-                  rizqullahplumbingengineering22<br/>@gmail.com
+            {/* CONTACT CARDS */}
+            <div className="flex flex-col gap-5">
+              <FadeIn delay={0.2}>
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-7 border border-white/20 hover:bg-white/15 transition-colors flex items-start gap-5">
+                  <div className="w-14 h-14 rounded-full bg-[#F6A623]/20 border border-[#F6A623]/40 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-[#F6A623]" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-black text-lg uppercase mb-1">Call Us</h4>
+                    <a href="tel:+2348124918887" className="text-[#A8C8E0] hover:text-white font-sans transition-colors block">+234 812 491 8887</a>
+                    <a href="tel:+234110428843" className="text-[#A8C8E0] hover:text-white font-sans transition-colors block mt-0.5">+234 110 428 843</a>
+                  </div>
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={0.3}>
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-7 border border-white/20 hover:bg-white/15 transition-colors flex items-start gap-5">
+                  <div className="w-14 h-14 rounded-full bg-[#F6A623]/20 border border-[#F6A623]/40 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-[#F6A623]" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-black text-lg uppercase mb-1">Email Us</h4>
+                    <a href="mailto:rizqullahplumbingengineering22@gmail.com" className="text-[#A8C8E0] hover:text-white font-sans text-sm transition-colors break-all">
+                      rizqullahplumbingengineering22@gmail.com
+                    </a>
+                  </div>
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={0.4}>
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-7 border border-white/20 hover:bg-white/15 transition-colors flex items-start gap-5">
+                  <div className="w-14 h-14 rounded-full bg-[#F6A623]/20 border border-[#F6A623]/40 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-[#F6A623]" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-black text-lg uppercase mb-1">Find Us</h4>
+                    <p className="text-[#A8C8E0] font-sans text-sm leading-relaxed">18, Uncle Standby Odusanya st, Makun Sagamu.<br/>05, Folani str Ode Saapade, Remo Ogun State.</p>
+                  </div>
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={0.5}>
+                <a
+                  href="https://wa.me/2348124918887"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 bg-[#25D366] hover:bg-[#1ea855] rounded-2xl p-7 transition-colors group"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-white flex-shrink-0">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  <div>
+                    <p className="text-white font-black text-lg uppercase">Chat on WhatsApp</p>
+                    <p className="text-white/80 font-sans text-sm">We reply fast — usually within minutes</p>
+                  </div>
+                  <ArrowRight className="w-5 h-5 text-white ml-auto group-hover:translate-x-1 transition-transform" />
                 </a>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.3}>
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-colors h-full flex flex-col justify-center">
-                <MapPin className="w-10 h-10 text-[#F6A623] mb-6" />
-                <h4 className="text-white font-black text-xl mb-2 uppercase">Visit Us</h4>
-                <p className="text-[#A8C8E0] font-sans text-sm mb-2">18, Uncle Standby Odusanya st.<br/>Makun Sagamu.</p>
-                <p className="text-[#A8C8E0] font-sans text-sm">05, Folani str Ode Saapade,<br/>Remo Ogun State.</p>
-              </div>
-            </FadeIn>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>
