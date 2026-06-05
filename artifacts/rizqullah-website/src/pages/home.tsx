@@ -12,13 +12,7 @@ const NAV_LINKS = [
 ];
 
 function scrollToSection(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const navHeight = 88;
-  const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
-  // Use document.documentElement.scrollTo for iOS Safari compatibility
-  document.documentElement.scrollTo({ top, behavior: "smooth" });
-  window.scrollTo({ top, behavior: "smooth" });
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) {
