@@ -455,54 +455,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROCESS SECTION */}
-      <section id="process" className="py-24 px-6 md:px-12 bg-white relative">
-        <div className="max-w-7xl mx-auto">
-          <FadeIn className="text-center mb-16">
-            <span className="text-[#2B6CB0] font-bold uppercase tracking-[0.2em] text-sm">How We Work</span>
-            <h2 className="text-5xl md:text-6xl font-black text-[#1B2D45] mt-2 mb-6">OUR PROCESS</h2>
-            <div className="w-24 h-2 bg-[#F6A623] mx-auto rounded-full"></div>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-4 gap-8 relative">
-            {/* Connecting line for desktop */}
-            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-1 bg-gradient-to-r from-[#2B6CB0]/20 via-[#F6A623]/50 to-[#2B6CB0]/20 z-0"></div>
-            
-            <FadeIn delay={0.1} className="relative z-10 text-center">
-              <div className="w-24 h-24 mx-auto bg-[#1B2D45] rounded-full border-4 border-white shadow-xl flex items-center justify-center mb-6">
-                <Search className="w-10 h-10 text-[#F6A623]" />
-              </div>
-              <h4 className="text-xl font-black text-[#1B2D45] uppercase mb-2">1. Inspection</h4>
-              <p className="text-[#1B2D45]/70 font-sans">We assess the site, identify requirements, and provide a transparent consultation.</p>
-            </FadeIn>
-
-            <FadeIn delay={0.2} className="relative z-10 text-center">
-              <div className="w-24 h-24 mx-auto bg-[#2B6CB0] rounded-full border-4 border-white shadow-xl flex items-center justify-center mb-6">
-                <ClipboardCheck className="w-10 h-10 text-white" />
-              </div>
-              <h4 className="text-xl font-black text-[#1B2D45] uppercase mb-2">2. Planning</h4>
-              <p className="text-[#1B2D45]/70 font-sans">Material selection and clear timeline mapping for zero surprises.</p>
-            </FadeIn>
-
-            <FadeIn delay={0.3} className="relative z-10 text-center">
-              <div className="w-24 h-24 mx-auto bg-[#F6A623] rounded-full border-4 border-white shadow-xl flex items-center justify-center mb-6">
-                <Wrench className="w-10 h-10 text-[#1B2D45]" />
-              </div>
-              <h4 className="text-xl font-black text-[#1B2D45] uppercase mb-2">3. Execution</h4>
-              <p className="text-[#1B2D45]/70 font-sans">Precision installation by our elite team with minimal disruption.</p>
-            </FadeIn>
-
-            <FadeIn delay={0.4} className="relative z-10 text-center">
-              <div className="w-24 h-24 mx-auto bg-[#1B2D45] rounded-full border-4 border-white shadow-xl flex items-center justify-center mb-6">
-                <Star className="w-10 h-10 text-[#A8C8E0]" />
-              </div>
-              <h4 className="text-xl font-black text-[#1B2D45] uppercase mb-2">4. Review</h4>
-              <p className="text-[#1B2D45]/70 font-sans">Final quality check to ensure everything meets our elite standards.</p>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
       {/* OUR WORK / PORTFOLIO SECTION */}
       <section id="portfolio" className="py-24 px-6 md:px-12 bg-[#0f1926] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full border-[40px] border-[#2B6CB0]/10 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
@@ -583,6 +535,53 @@ export default function Home() {
               Want results like these? <button onClick={() => scrollToSection("contact")} className="text-[#F6A623] font-bold underline underline-offset-4 hover:text-white transition-colors cursor-pointer">Get in touch today.</button>
             </p>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* PROCESS SECTION */}
+      <section id="process" className="py-24 px-6 md:px-12 bg-white relative">
+        <div className="max-w-7xl mx-auto">
+          <FadeIn className="text-center mb-16">
+            <span className="text-[#2B6CB0] font-bold uppercase tracking-[0.2em] text-sm">How We Work</span>
+            <h2 className="text-5xl md:text-6xl font-black text-[#1B2D45] mt-2 mb-6">OUR PROCESS</h2>
+            <div className="w-24 h-2 bg-[#F6A623] mx-auto rounded-full"></div>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-1 bg-gradient-to-r from-[#2B6CB0]/20 via-[#F6A623]/50 to-[#2B6CB0]/20 z-0"></div>
+
+            <FadeIn delay={0.1} className="relative z-10 text-center">
+              <div className="w-24 h-24 mx-auto bg-[#1B2D45] rounded-full border-4 border-white shadow-xl flex items-center justify-center mb-6">
+                <Search className="w-10 h-10 text-[#F6A623]" />
+              </div>
+              <h4 className="text-xl font-black text-[#1B2D45] uppercase mb-2">1. Inspection</h4>
+              <p className="text-[#1B2D45]/70 font-sans">We assess the site, identify requirements, and provide a transparent consultation.</p>
+            </FadeIn>
+
+            <FadeIn delay={0.2} className="relative z-10 text-center">
+              <div className="w-24 h-24 mx-auto bg-[#2B6CB0] rounded-full border-4 border-white shadow-xl flex items-center justify-center mb-6">
+                <ClipboardCheck className="w-10 h-10 text-white" />
+              </div>
+              <h4 className="text-xl font-black text-[#1B2D45] uppercase mb-2">2. Planning</h4>
+              <p className="text-[#1B2D45]/70 font-sans">Material selection and clear timeline mapping for zero surprises.</p>
+            </FadeIn>
+
+            <FadeIn delay={0.3} className="relative z-10 text-center">
+              <div className="w-24 h-24 mx-auto bg-[#F6A623] rounded-full border-4 border-white shadow-xl flex items-center justify-center mb-6">
+                <Wrench className="w-10 h-10 text-[#1B2D45]" />
+              </div>
+              <h4 className="text-xl font-black text-[#1B2D45] uppercase mb-2">3. Execution</h4>
+              <p className="text-[#1B2D45]/70 font-sans">Precision installation by our elite team with minimal disruption.</p>
+            </FadeIn>
+
+            <FadeIn delay={0.4} className="relative z-10 text-center">
+              <div className="w-24 h-24 mx-auto bg-[#1B2D45] rounded-full border-4 border-white shadow-xl flex items-center justify-center mb-6">
+                <Star className="w-10 h-10 text-[#A8C8E0]" />
+              </div>
+              <h4 className="text-xl font-black text-[#1B2D45] uppercase mb-2">4. Review</h4>
+              <p className="text-[#1B2D45]/70 font-sans">Final quality check to ensure everything meets our elite standards.</p>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
