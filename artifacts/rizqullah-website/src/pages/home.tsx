@@ -716,12 +716,19 @@ export default function Home() {
 
               <FadeIn delay={0.4}>
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-7 border border-white/20 hover:bg-white/15 transition-colors flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-full bg-[#F6A623]/20 border border-[#F6A623]/40 flex items-center justify-center flex-shrink-0">
+                  <div className="w-14 h-14 rounded-full bg-[#F6A623]/20 border border-[#F6A623]/40 flex items-center justify-center flex-shrink-0 mt-1">
                     <MapPin className="w-6 h-6 text-[#F6A623]" />
                   </div>
-                  <div>
-                    <h4 className="text-white font-black text-lg uppercase mb-1">Find Us</h4>
-                    <p className="text-[#A8C8E0] font-sans text-sm leading-relaxed">Araromi Phase 2, After Orion Academy, Sagamu.<br/>05, Folani str Ode Saapade, Remo Ogun State.</p>
+                  <div className="flex flex-col gap-4 w-full">
+                    <h4 className="text-white font-black text-lg uppercase mb-0">Our Locations</h4>
+                    <div className="border-l-2 border-[#F6A623] pl-4">
+                      <span className="text-[#F6A623] text-xs font-black uppercase tracking-widest">Location 1 — Sagamu</span>
+                      <p className="text-[#A8C8E0] font-sans text-sm mt-1">Araromi Phase 2, After Orion Academy, Sagamu.</p>
+                    </div>
+                    <div className="border-l-2 border-[#2B6CB0] pl-4">
+                      <span className="text-[#A8C8E0] text-xs font-black uppercase tracking-widest">Location 2 — Remo</span>
+                      <p className="text-[#A8C8E0] font-sans text-sm mt-1">05, Folani Street, Ode Saapade, Remo, Ogun State.</p>
+                    </div>
                   </div>
                 </div>
               </FadeIn>
