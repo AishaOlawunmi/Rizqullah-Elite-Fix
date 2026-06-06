@@ -538,6 +538,83 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TESTIMONIALS SECTION */}
+      <section className="py-24 px-6 md:px-12 bg-[#1B2D45] relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full border-[50px] border-[#2B6CB0]/10 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full border-[30px] border-[#F6A623]/10 translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+        <div className="max-w-6xl mx-auto relative z-10">
+          <FadeIn className="text-center mb-16">
+            <span className="text-[#F6A623] font-bold uppercase tracking-[0.2em] text-sm">What Our Clients Say</span>
+            <h2 className="text-5xl md:text-6xl font-black text-white mt-2 mb-6">TESTIMONIALS</h2>
+            <div className="w-24 h-2 bg-[#F6A623] mx-auto rounded-full"></div>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Alhaji Musa Adeyemi",
+                location: "Sagamu, Ogun State",
+                text: "Rizqullah Elite Fix did an exceptional job on our bathroom. The tiling was clean, precise, and exactly what we wanted. They also installed our water heater and shower fittings perfectly. Very professional team.",
+                stars: 5,
+              },
+              {
+                name: "Mrs. Funke Oladele",
+                location: "Remo North, Ogun State",
+                text: "I called them for a plumbing emergency and they arrived quickly. They fixed the burst pipe, re-tiled the affected wall, and left everywhere clean. I highly recommend Rizqullah Elite Fix to anyone.",
+                stars: 5,
+              },
+              {
+                name: "Mr. Segun Balogun",
+                location: "Ikenne, Ogun State",
+                text: "They handled the entire plumbing and tiling for my new building. The marble floor they laid is beautiful. Work was done on time and within budget. I'm very satisfied and will use them again.",
+                stars: 5,
+              },
+              {
+                name: "Engr. Rasheed Omotosho",
+                location: "Sagamu, Ogun State",
+                text: "As a civil engineer, I am very particular about quality. Rizqullah Elite Fix met my standards. Their pipe network installation was neat and the tiling finish was top class. Reliable and skilled team.",
+                stars: 5,
+              },
+              {
+                name: "Mrs. Blessing Taiwo",
+                location: "Ode Remo, Ogun State",
+                text: "They tiled my kitchen and sitting room and the result was stunning. They were respectful, tidy, and completed the work faster than expected. The black marble tiles they suggested look amazing!",
+                stars: 5,
+              },
+              {
+                name: "Mr. Dauda Lawal",
+                location: "Makun, Sagamu",
+                text: "I needed full bathroom renovation — new pipes, sink, toilet, and tiles. They handled everything from start to finish. Very affordable for the quality of work delivered. Will recommend to my neighbours.",
+                stars: 5,
+              },
+            ].map((t, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-7 flex flex-col gap-4 hover:bg-white/10 hover:border-[#F6A623]/40 transition-all duration-300 h-full">
+                  {/* Stars */}
+                  <div className="flex gap-1">
+                    {Array.from({ length: t.stars }).map((_, s) => (
+                      <Star key={s} className="w-5 h-5 fill-[#F6A623] text-[#F6A623]" />
+                    ))}
+                  </div>
+                  {/* Quote */}
+                  <p className="text-[#A8C8E0] font-sans text-sm leading-relaxed flex-1">"{t.text}"</p>
+                  {/* Author */}
+                  <div className="flex items-center gap-3 pt-3 border-t border-white/10">
+                    <div className="w-10 h-10 rounded-full bg-[#2B6CB0] flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-black text-sm">{t.name.charAt(0)}</span>
+                    </div>
+                    <div>
+                      <p className="text-white font-bold text-sm">{t.name}</p>
+                      <p className="text-[#A8C8E0]/60 text-xs font-sans">{t.location}</p>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* PROCESS SECTION */}
       <section id="process" className="py-24 px-6 md:px-12 bg-white relative">
         <div className="max-w-7xl mx-auto">
