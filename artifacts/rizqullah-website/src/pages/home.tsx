@@ -218,7 +218,7 @@ export default function Home() {
                 {NAV_LINKS.map(({ label, id }) => (
                   <button
                     key={id}
-                    onClick={() => { scrollToSection(id); setMenuOpen(false); }}
+                    onClick={() => { setMenuOpen(false); setTimeout(() => scrollToSection(id), 350); }}
                     className={`text-left px-5 py-3 rounded-xl text-base font-bold uppercase tracking-wide transition-all cursor-pointer ${
                       activeSection === id
                         ? "bg-[#F6A623] text-[#1B2D45]"
@@ -229,7 +229,7 @@ export default function Home() {
                   </button>
                 ))}
                 <button
-                  onClick={() => { scrollToSection("contact"); setMenuOpen(false); }}
+                  onClick={() => { setMenuOpen(false); setTimeout(() => scrollToSection("contact"), 350); }}
                   className="mt-2 mx-2 bg-[#F6A623] hover:bg-[#d98b16] text-[#1B2D45] font-black uppercase tracking-widest rounded-full px-6 py-3 text-base cursor-pointer transition-colors"
                 >
                   Get a Quote
