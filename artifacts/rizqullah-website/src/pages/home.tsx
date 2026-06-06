@@ -514,12 +514,19 @@ export default function Home() {
             <p className="text-[#A8C8E0] font-sans text-lg max-w-2xl mx-auto">Every project is handled with precision and care. Here's a look at what we deliver on the ground.</p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Tiling Jobs */}
+          <FadeIn className="mb-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-1 h-8 bg-[#F6A623] rounded-full"></div>
+              <h3 className="text-2xl font-black text-white uppercase tracking-wide">Tiling Work</h3>
+            </div>
+          </FadeIn>
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
             {[
-              { src: "/job-plumbing-1.jpg", label: "Pipe Installation", category: "Plumbing" },
-              { src: "/job-plumbing-2.jpg", label: "External Water Line", category: "Plumbing" },
-              { src: "/job-plumbing-3.jpg", label: "On-Site Precision Work", category: "Plumbing" },
-              { src: "/job-tiling-1.jpg", label: "Bathroom Tiling & Plumbing", category: "Tiling" },
+              { src: "/job-tiling-black-marble.jpg", label: "Black Marble Floor", category: "Tiling" },
+              { src: "/job-tiling-white-marble-floor.jpg", label: "White Marble Floor", category: "Tiling" },
+              { src: "/job-tiling-bathroom-white.jpg", label: "Marble Wall & Bathroom Fit-out", category: "Tiling" },
+              { src: "/job-tiling-striped-bathroom.jpg", label: "Striped Tile Bathroom", category: "Tiling" },
             ].map((item, i) => (
               <FadeIn key={i} delay={i * 0.1}>
                 <div className="group relative rounded-2xl overflow-hidden border-2 border-[#2B6CB0]/30 hover:border-[#F6A623] transition-all duration-300 shadow-xl aspect-[3/4]">
@@ -529,9 +536,42 @@ export default function Home() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1B2D45]/90 via-[#1B2D45]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
                     <span className="inline-block bg-[#F6A623] text-[#1B2D45] text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full mb-2">{item.category}</span>
-                    <p className="text-white font-bold text-base leading-tight">{item.label}</p>
+                    <p className="text-white font-bold text-sm leading-tight">{item.label}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          {/* Plumbing Jobs */}
+          <FadeIn className="mb-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-1 h-8 bg-[#2B6CB0] rounded-full"></div>
+              <h3 className="text-2xl font-black text-white uppercase tracking-wide">Plumbing Work</h3>
+            </div>
+          </FadeIn>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
+            {[
+              { src: "/job-plumbing-shower-gold-tile.jpg", label: "Shower & Water Heater Installation", category: "Plumbing" },
+              { src: "/job-plumbing-sink-vanity.jpg", label: "Sink Vanity & Mirror Fit-out", category: "Plumbing" },
+              { src: "/job-plumbing-full-bathroom.jpg", label: "Full Bathroom Plumbing", category: "Plumbing" },
+              { src: "/job-plumbing-shower-warm.jpg", label: "Rain Shower Installation", category: "Plumbing" },
+              { src: "/job-plumbing-pipes-wall.jpg", label: "Pipe Network Installation", category: "Plumbing" },
+              { src: "/job-plumbing-team-pipes.jpg", label: "Industrial Pipe Fitting", category: "Plumbing" },
+            ].map((item, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="group relative rounded-2xl overflow-hidden border-2 border-[#2B6CB0]/30 hover:border-[#F6A623] transition-all duration-300 shadow-xl aspect-[3/4]">
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B2D45]/90 via-[#1B2D45]/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <span className="inline-block bg-[#2B6CB0] text-white text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full mb-2">{item.category}</span>
+                    <p className="text-white font-bold text-sm leading-tight">{item.label}</p>
                   </div>
                 </div>
               </FadeIn>
