@@ -645,7 +645,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="text-white font-black text-lg uppercase mb-1">Find Us</h4>
-                    <p className="text-[#A8C8E0] font-sans text-sm leading-relaxed">18, Uncle Standby Odusanya st, Makun Sagamu.<br/>05, Folani str Ode Saapade, Remo Ogun State.</p>
+                    <p className="text-[#A8C8E0] font-sans text-sm leading-relaxed">Araromi Phase 2, After Orion Academy, Sagamu.<br/>05, Folani str Ode Saapade, Remo Ogun State.</p>
                   </div>
                 </div>
               </FadeIn>
