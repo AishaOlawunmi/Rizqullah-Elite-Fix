@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
-import { Phone, Mail, MapPin, Instagram, Twitter, Facebook, Wrench, Layers, CheckCircle, Star, ArrowRight, Droplets, Shield, Clock, Search, ClipboardCheck, Menu, X } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Facebook, Wrench, Layers, CheckCircle, Star, ArrowRight, Droplets, Shield, Clock, Search, ClipboardCheck, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NAV_LINKS = [
@@ -768,13 +768,10 @@ export default function Home() {
           </div>
           
           <div className="flex gap-4">
-            <a href="https://instagram.com/rizqullahelitefix" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#1B2D45] border border-[#2B6CB0] flex items-center justify-center hover:bg-[#2B6CB0] hover:border-white transition-all text-white">
+            <a href="https://www.instagram.com/adesanya.olayinka?igsh=MXM1cHM2c2hkemk4NQ==" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#1B2D45] border border-[#2B6CB0] flex items-center justify-center hover:bg-[#2B6CB0] hover:border-white transition-all text-white">
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="https://twitter.com/rizqullahelitefix" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#1B2D45] border border-[#2B6CB0] flex items-center justify-center hover:bg-[#2B6CB0] hover:border-white transition-all text-white">
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a href="https://facebook.com/rizqullahelitefix" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#1B2D45] border border-[#2B6CB0] flex items-center justify-center hover:bg-[#2B6CB0] hover:border-white transition-all text-white">
+            <a href="https://www.facebook.com/share/17Td9EMS7f/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#1B2D45] border border-[#2B6CB0] flex items-center justify-center hover:bg-[#2B6CB0] hover:border-white transition-all text-white">
               <Facebook className="w-5 h-5" />
             </a>
           </div>
