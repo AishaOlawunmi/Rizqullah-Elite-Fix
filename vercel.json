@@ -1,1 +1,18 @@
-
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "api-server": {
+      "root": "api-server",
+      "framework": "express"
+    },
+    "mockup-sandbox": {
+      "root": "mockup-sandbox",
+      "framework": "vite"
+    },
+    "rizqullah-website": {
+      "root": "rizqullah-website",
+      "framework": "vite"
+    }
+  },
+  "rewrites": []
+}
